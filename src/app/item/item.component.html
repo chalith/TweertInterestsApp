@@ -1,0 +1,90 @@
+<p-panel *ngIf="viewtype=='listItem'" (click)="itemClick(object)"  [ngClass]="{'clickable':clickable}">
+    <p-header>
+        {{object.displayName}}
+    </p-header>
+    <div class="row list-row">
+        <div *ngIf="itemType!=ItemType.census" class="col-md-2">
+            <div class="imgbox">
+                <img class="image" src="{{imageUrl}}"/>
+            </div>
+        </div>
+        <div class="col-md-10 center">
+            <div class="row">
+                <div class="negrating">
+                    <p-rating [(ngModel)]="negrating" [readonly]="true" [cancel]="false"></p-rating>
+                </div>
+                <div class="posrating">
+                    <p-rating [(ngModel)]="posrating" [readonly]="true" [cancel]="false"></p-rating>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <p-accordion (click)="stopPropagation($event)">
+        <p-accordionTab header="More">
+            <p-tabView>
+                <p-tabPanel header="Map">
+                    <app-map *ngIf="mapLoaded" (loadRIs)="loadRIs($event)" (viewTweet)="viewTweet($event)" [data]="mapItems"></app-map>
+                </p-tabPanel>
+                <p-tabPanel header="Chart">
+                    <app-chart *ngIf="chartLoaded" [data]="tweetcountChartItems" [title]="'Tweets Count'"></app-chart>
+                    <app-chart *ngIf="chartLoaded" [data]="polarityChartItems" [title]="'Rating'"></app-chart>
+                </p-tabPanel>
+                <p-tabPanel header="Recommendation">
+                    <p [innerHTML]="recommendation"></p>
+                </p-tabPanel>
+            </p-tabView>        
+        </p-accordionTab>
+        <p-accordionTab *ngIf="itemType==ItemType.census" header="Rating">
+            <app-rating [polarities]="object.polarities"></app-rating>
+        </p-accordionTab>
+    </p-accordion>
+</p-panel>
+
+<p-panel *ngIf="viewtype=='gridItem'" (click)="itemClick(object)" [ngClass]="{'clickable':clickable}">
+    <p-header>
+        {{object.displayName}}
+    </p-header>
+    <div class="row grid-row">
+        <div *ngIf="itemType!=ItemType.census" class="col-md-3">
+            <div class="imgbox">
+                <img class="image" src="{{imageUrl}}"/>
+            </div>
+        </div>
+        <div class="col-md-9 center">
+            <div class="row">
+                <div class="negrating">
+                    <p-rating [(ngModel)]="negrating" [readonly]="true" [cancel]="false"></p-rating>
+                </div>
+                <div class="posrating">
+                    <p-rating [(ngModel)]="posrating" [readonly]="true" [cancel]="false"></p-rating>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <p-accordion (click)="stopPropagation($event)">
+        <p-accordionTab header="More">
+            <p-tabView>
+                <p-tabPanel header="||"></p-tabPanel>
+                <p-tabPanel header="Map">
+                    <app-map *ngIf="mapLoaded" (loadRIs)="loadRIs($event)" (viewTweet)="viewTweet($event)" [data]="mapItems"></app-map>
+                </p-tabPanel>
+                <p-tabPanel header="Chart">
+                    <app-chart *ngIf="chartLoaded" [data]="tweetcountChartItems" [title]="'Tweets Count'"></app-chart>
+                    <app-chart *ngIf="chartLoaded" [data]="polarityChartItems" [title]="'Rating'"></app-chart>
+                </p-tabPanel>
+                <p-tabPanel header="Recommendation">
+                    <p [innerHTML]="recommendation"></p>
+                </p-tabPanel>
+            </p-tabView>        
+        </p-accordionTab>
+        <p-accordionTab *ngIf="itemType==ItemType.census" header="Rating">
+            <p-tabView>
+                <p-tabPanel header="||"></p-tabPanel>
+                <p-tabPanel header="Rating">
+                    <app-rating [polarities]="object.polarities"></app-rating>
+                </p-tabPanel>
+            </p-tabView>
+        </p-accordionTab>
+    </p-accordion>
+</p-panel>
+<app-view-tweet *ngIf="showtweet" [tweettext]="tweettext" (onHide)="hideDialog()"></app-view-tweet>

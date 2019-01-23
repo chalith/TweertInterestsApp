@@ -1,0 +1,30 @@
+.bread{
+    background-color: #007bff;
+    color: #ffffff !important;
+    border-radius: 5px;
+    padding: 6px;
+    cursor: pointer;
+    margin-right: 3px;
+}
+
+.bread:hover{
+    background-color: #8db9e8;
+}
+
+.center{
+    text-align: center;
+    margin: auto;
+}
+
+.spinner{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.input-row{
+    margin: 5px;
+}
+
+.slider-input{
+    width: 50px;
+}

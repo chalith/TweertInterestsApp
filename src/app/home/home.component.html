@@ -1,0 +1,75 @@
+<p-panel>
+  <p-header>
+      <div class="row">
+        <div class="col-md-10">
+          <div class="row input-row">
+            <div class="col-md-4 center">     
+              <p-calendar placeholder="Start Date" dateFormat="M d yy" [readonlyInput]="true" [touchUI]="true" [(ngModel)]="startdate"></p-calendar>
+            </div>
+            <div class="col-md-4 center">
+              <p-calendar placeholder="End Date" dateFormat="M d yy" [readonlyInput]="true" [touchUI]="true" [(ngModel)]="enddate"></p-calendar>
+            </div>
+            <div class="col-md-4 center">
+              <p-radioButton label="Cluster" value="{{aspect_type.cluster}}" [(ngModel)]="aspectType"></p-radioButton>&nbsp;&nbsp;
+              <p-radioButton label="Categorize" value="{{aspect_type.categorize}}" [(ngModel)]="aspectType"></p-radioButton>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 center">
+              <input pInputText [value]="curMinTime" [disabled]="true" class="slider-input">
+            </div>
+            <div class="col-md-8 center">     
+              <p-slider [(ngModel)]="rangeValues" [range]="true" [min]="mini" [max]="maxi" (onSlideEnd)="slideChange($event)"></p-slider>
+            </div>
+            <div class="col-md-2 center">
+              <input pInputText [value]="curMaxTime" [disabled]="true" class="slider-input">
+            </div>  
+          </div>    
+        </div>
+        <div class="col-md-2 center">
+          <button class="btn btn-primary center" [disabled]="!dataLoaded" (click)="filterByDate()">Filter <i *ngIf="!dataLoaded" class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i></button>
+        </div>  
+      </div>
+  </p-header>
+  <div *ngIf="!dataLoaded" class="row">
+      <div class="col-md-12 center spinner">
+        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+      </div>
+  </div>
+  <div *ngIf="dataLoaded" >
+    <p-dataView #dv [value]="items" [sortField]="sortField" [sortOrder]="sortOrder" [paginator]="true" [rows]="max" filterBy="name">
+      <p-header>
+          <div>     
+              <div class="row">
+                <div class="col-md-3">
+                  <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [autoWidth]="false"></p-dropdown>
+                </div>
+                <div class="col-md-3"  style="text-align:right">
+                  <input type="search" pInputText [(ngModel)]="nameFilter" placeholder="Search by Name" (keyup)="filterByName($event.target.value)">
+                </div>
+                <div class="col-md-3"  style="text-align:right">
+                  <p-dropdown [options]="maxItems" [(ngModel)]="maxtKey" placeholder="5" (onChange)="onMaxChange($event)"></p-dropdown>
+                </div>
+                <div class="col-md-3" style="text-align:right">
+                  <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                </div>
+              </div>
+            </div><br>
+            <div style="text-align: center">
+                <a class="bread" *ngFor="let bread of breadcrumb; let i = index" (click)="changePath(i)">
+                  {{bread}}
+                </a>
+            </div>
+      </p-header>
+      
+      <ng-template let-item pTemplate="listItem">
+        <div>
+          <app-item (itemClicked)="itemClicked($event)" [clickable]="clickable" [object]="item" [viewtype]="'listItem'"></app-item>
+        </div>
+      </ng-template>
+      <ng-template let-item pTemplate="gridItem">
+        <app-item (itemClicked)="itemClicked($event)" [clickable]="clickable" [object]="item" [viewtype]="'gridItem'"></app-item>
+      </ng-template>
+    </p-dataView>
+  </div>
+</p-panel>

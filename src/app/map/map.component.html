@@ -1,0 +1,21 @@
+<!-- <agm-map id="map-container" style="border:0" *ngIf="data.length" [fitBounds]="true" [fullscreenControl]="true">
+  <agm-marker [agmFitBounds]="true" *ngFor="let dataitem of data" [latitude]="dataitem.latitude" [longitude]="dataitem.longitude"
+  [title]="dataitem.datetime" [opacity]="0.3" (markerClick)="showTweet(dataitem.text)"></agm-marker>
+  <div *ngFor="let RI of RIs; let i = index">
+    <agm-circle *ngFor="let ri of RI" [latitude]="ri.lat" [longitude]="ri.lng" [circleDraggable]="false" [editable]="false" [fillColor]="colors[i]" 
+    [radius]="minRIDistance" [fillOpacity]="0.5"></agm-circle>
+  </div>
+  <agm-polygon *ngFor="let RI of RIs; let i = index" [paths]="RI" [polyDraggable]="false" [editable]="false" [fillColor]="colors[i]" 
+  [strokeColor]="colors[i]" [fillOpacity]="0.5"></agm-polygon>
+</agm-map> -->
+<div class="row">
+  <div id="floating-panel">
+    <button (click)="toggleHeatmap()">Toggle Heatmap</button>
+    <button (click)="changeGradient()">Change gradient</button>
+    <button (click)="changeRadius()">Change radius</button>
+    <button (click)="changeOpacity()">Change opacity</button>
+    <button (click)="toggleMarkers()">Toggle Markers</button>
+    <button (click)="toggleRoAs()">Toggle RoAs</button>
+  </div>
+</div>
+<div #gmap style="width:100%;height:400px"></div>

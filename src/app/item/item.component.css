@@ -1,0 +1,57 @@
+.clickable{
+    cursor: pointer;
+}
+
+.list-row .image{
+    height: 80px;
+}
+
+.list-row .imgbox{
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.grid-row .image{
+    height: 30px;
+}
+
+.grid-row .imgbox{
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.negrating{
+    text-align: left;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.list-row .negrating ::ng-deep .ui-rating a .ui-rating-icon{
+    font-size: 28px;
+    color: #e17171;
+}
+
+.grid-row .negrating ::ng-deep .ui-rating a .ui-rating-icon{
+    font-size: 13px;
+    color: #e17171;
+}
+
+.posrating{
+    text-align: left;
+}
+
+.list-row .posrating ::ng-deep .ui-rating a .ui-rating-icon{
+    font-size: 28px;
+    color: #44b751;
+}
+
+.grid-row .posrating ::ng-deep .ui-rating a .ui-rating-icon{
+    font-size: 13px;
+    color: #44b751;
+}
+
+.center{
+    margin: auto;
+}

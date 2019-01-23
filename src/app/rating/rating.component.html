@@ -1,0 +1,17 @@
+<p-treeTable *ngIf="dataLoaded" [value]="data" width="10px">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Aspect</th>
+            <th>Rating</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+        <tr>
+            <td>
+                <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                {{rowData.aspect}}
+            </td>
+            <td>{{rowData.score}}</td>
+        </tr>
+    </ng-template>
+</p-treeTable>

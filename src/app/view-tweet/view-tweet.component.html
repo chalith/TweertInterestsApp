@@ -1,0 +1,12 @@
+<p-dialog [(visible)]="showDialog" (onHide)="hideDialog()" [contentStyle]="{'min-height':'150px'}">
+  <p-header>
+    Tweet Content
+  </p-header>
+  <div style="display: table; height: 150px; overflow: hidden; text-align: center;">
+    <div style="display: table-cell; vertical-align: middle;">
+      <div>
+        {{ tweettext }}
+      </div>
+    </div>
+  </div>
+</p-dialog>

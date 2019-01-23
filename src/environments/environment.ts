@@ -3,9 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiPath: "http://127.0.0.1:8000",
+  appPath: "http://localhost:4200",
+  imageApiPath: "https://pixabay.com/api/",
+  imageApiKey: "10757239-ceda8158b3b6f5c1a90df8a20"
 };
-
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
